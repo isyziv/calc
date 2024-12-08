@@ -34,10 +34,10 @@ class Calculator:
     def divide(self, x, y):
         if y == 0:
             raise ValueError("Error: Can not divide by zero!")
+        return x / y
 
     def pow(self, x, y):
         return x ** y
-        return x / y
 
 
 if __name__ == "__main__":

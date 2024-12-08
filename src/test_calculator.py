@@ -3,32 +3,41 @@ from calculate import Calculator
 
 
 class TestCalculator(unittest.TestCase):
-    def setUp(self):
-        self.calculator = Calculator()
 
+    def setUp(self):
+        self.calc = Calculator()
+
+    # 測試基本加減乘除
     def test_addition(self):
-        result = self.calculator.calculate(10, 5, "add")
-        self.assertEqual(result, 15)
+        self.assertEqual(self.calc.calculate(10, 5, "add"), 15)
 
     def test_subtraction(self):
-        result = self.calculator.calculate(10, 5, "sub")
-        self.assertEqual(result, 5)
+        self.assertEqual(self.calc.calculate(10, 5, "sub"), 5)
 
     def test_multiplication(self):
-        result = self.calculator.calculate(10, 5, "mul")
-        self.assertEqual(result, 50)
+        self.assertEqual(self.calc.calculate(10, 5, "mul"), 50)
 
     def test_division(self):
-        result = self.calculator.calculate(10, 5, "div")
-        self.assertEqual(result, 2)
+        self.assertEqual(self.calc.calculate(10, 2, "div"), 5)
 
     def test_division_by_zero(self):
-        result = self.calculator.calculate(10, 0, "div")
-        self.assertEqual(result, "Error: Can not divide by zero!")
+        self.assertEqual(self.calc.calculate(10, 0, "div"),
+                         "Error: Can not divide by zero!")
 
+    def test_power(self):
+        self.assertEqual(self.calc.calculate(2, 3, "pow"), 8)
+
+    # 測試非法操作符
     def test_invalid_operator(self):
-        result = self.calculator.calculate(10, 5, "unknown")
-        self.assertEqual(result, "Invalid operator")
+        self.assertEqual(self.calc.calculate(
+            10, 5, "invalid"), "Invalid operator")
+
+    # 測試數字格式化
+    def test_format_number_integer(self):
+        self.assertEqual(self.calc.format_number(5.0), 5)
+
+    def test_format_number_float(self):
+        self.assertEqual(self.calc.format_number(5.5), 5.5)
 
 
 if __name__ == "__main__":
