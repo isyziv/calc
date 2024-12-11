@@ -249,9 +249,10 @@ class CalculatorApp(ft.Container):
             self.result.value = self.format_number(
                 math.log(float(self.result.value))
             )
-        elif action == "MC":
+        elif action == "clear_memory":
             self.memory = 0
             self.memory_display.visible = False
+            self.update()
         elif action == "recall_memory":
             self.result.value = str(int(self.memory))
         elif action == "add_memory":
@@ -264,6 +265,8 @@ class CalculatorApp(ft.Container):
                 self.memory_display.visible = True
         else:
             raise ValueError("Invalid action")
+        if self.memory == 0:
+            self.memory_display.visible = False
 
     def format_number(self, num):
         if num % 1 == 0:
